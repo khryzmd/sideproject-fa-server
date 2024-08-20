@@ -1,0 +1,102 @@
+Objective: ExpressJS API - Airline Booking System
+
+1. What is the main objective?
+   - Develop a comprehensive API that enables users to search for flights, view flight details, book flights, manage reservations, and allow admins to oversee and manage flights and bookings.
+
+2. Who are the target users of the application?
+   - Passengers (users who book flights)
+   - Airline Admins (users who manage flights and bookings)
+
+3. What are the key features?
+   - User Features:
+     - User Registration
+     - User Authentication
+     - Search for flights by origin, destination, date, and number of passengers
+     - View details of available flights
+     - Book a seat on a flight
+     - View and manage their own bookings
+     - Cancel their own bookings
+     - View booking history and status
+
+   - Admin Features:
+     - Admin Authentication
+     - Add new flights with details
+     - Update flight information
+     - Delete flights
+     - View all bookings
+
+4. What structure of data in the application do we need to store and manage?
+   - User:
+	- firstName
+	- lastName
+	- email
+	- mobileNo
+	- password
+	- isAdmin
+   - Flight:
+	- airline
+	- departureCity
+	- destinationCity
+	- departureDatetime
+	- arrivalDatetime
+	- price
+	- availableSeats
+   - Booking:
+	- userId
+	- flightsIds
+	- totalPrice
+	- status
+   - Payment:
+	- bookingId
+	- paymentDatetime
+	- amount
+	- paymentMethod
+
+5. Specific Technical Requirements
+   - ExpressJS API
+   - MongoDB/Mongoose for database management
+   - REST API design
+   - Stripe API for payment processing
+
+6. Other Requirements
+   - JWT Token for User and Admin Authentication
+   - bcrypt for password hashing and security
+
+7. What are your possible routes?
+
+  	 User Routes:
+
+		- Authentication:
+			- POST /users/login - User login
+			- POST /users/register - User registration
+
+		- User Management:
+			- GET /users/details - Get user details
+			- GET /users/bookings - Retrieve all bookings for the user
+			- DELETE /users/cancelBooking/:bookingId - Cancel a specific booking
+
+	Flight Routes:
+
+		- Admin Operations:
+			- POST /flights/addFlight - Add a new flight (admin only)
+			- PATCH /flights/updateFlight/:flightId - Update flight details (admin only)
+			- DELETE /flights/deleteFlight/:flightId - Delete a flight (admin only)
+
+		- Search and View:
+			- GET /flights/search - Search for flights based on criteria
+			- GET /flights/:flightId - Get details of a specific flight
+
+	Booking Routes:
+
+		- User Booking Management:
+			- POST /bookings/makeBooking - Create a new booking
+			- GET /bookings/:bookingId - Retrieve booking details
+			- DELETE /bookings/cancelBooking/:bookingId - Cancel a booking
+
+	Payment Routes:
+
+		- Payment Management:
+			- POST /payments/makePayment - Process a new payment
+			- GET /payments/:paymentId - Retrieve payment details
+			- GET /payments/booking/:bookingId - Retrieve payments associated with a specific booking
+
